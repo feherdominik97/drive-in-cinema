@@ -13,4 +13,4 @@ Drive-in Cinema REST API
    docker-compose exec app php artisan migrate --seed
    ```
 
-http://localhost:8000/api/documentation
+Documentation: http://localhost:8000/api/documentation
