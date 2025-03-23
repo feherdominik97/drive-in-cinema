@@ -1,0 +1,589 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Movie API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/movies": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get a list of movies",
+                "operationId": "610a27a780e343454ca2f74b07336da2",
+                "responses": {
+                    "200": {
+                        "description": "A list of movies",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Movie"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Create a new movie",
+                "operationId": "9e5d3e8deef812e2d1b05f3af0e643a2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreMovieRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Movie created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/movies/{id}": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get a movie by ID",
+                "operationId": "58b81dbd64333a0c38d794031e4eae14",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single movie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Update an existing movie",
+                "operationId": "1e610c1360525306877463395f33d1a9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateMovieRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Movie updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Delete a movie",
+                "operationId": "cc499fec81d45272ce6c39d4833925ec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Movie deleted"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            }
+        },
+        "/api/movies/{id}/screenings": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get all screenings for a movie",
+                "operationId": "24fb30ddc2bda44aba695438e6d24433",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of screenings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Screening"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            }
+        },
+        "/api/screenings": {
+            "get": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Get a list of screenings",
+                "operationId": "1de3ccd53ec0d04abcff69f39f6f68a0",
+                "responses": {
+                    "200": {
+                        "description": "A list of screenings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Screening"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Create a new screening",
+                "operationId": "e7316a32f397eebfbf3e818a3bb98299",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreScreeningRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Screening created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Screening"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/screenings/{id}": {
+            "get": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Get a screening by ID",
+                "operationId": "e8c1ecd9b26abbe7b0b75c1d1ef7f24a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single screening",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Screening"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Screening not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Update an existing screening",
+                "operationId": "bbc57f83d207762b04325cc1d971b247",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateScreeningRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Screening updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Screening"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Delete a screening",
+                "operationId": "2badfa8b984ec93dddc51f1f63bd3677",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Screening deleted"
+                    },
+                    "404": {
+                        "description": "Screening not found"
+                    }
+                }
+            }
+        },
+        "/api/screenings/{id}/movie": {
+            "get": {
+                "tags": [
+                    "Screenings"
+                ],
+                "summary": "Get the movie for a screening",
+                "operationId": "990795ca385b62625b138eca1b0b22da",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie of the screening",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Screening not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreMovieRequest": {
+                "required": [
+                    "title",
+                    "description",
+                    "age_rating",
+                    "language",
+                    "cover_img_url"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "The Dark Knight"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "A dark and gritty superhero film."
+                    },
+                    "age_rating": {
+                        "type": "string",
+                        "enum": [
+                            "G",
+                            "PG",
+                            "PG-13",
+                            "R",
+                            "NC-17"
+                        ],
+                        "example": "PG-13"
+                    },
+                    "language": {
+                        "type": "string",
+                        "enum": [
+                            "English",
+                            "Spanish",
+                            "French",
+                            "German",
+                            "Chinese",
+                            "Japanese",
+                            "Hindi",
+                            "Russian",
+                            "Arabic",
+                            "Italian"
+                        ],
+                        "example": "English"
+                    },
+                    "cover_img_url": {
+                        "type": "string",
+                        "example": "http://example.com/cover.jpg"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreScreeningRequest": {
+                "required": [
+                    "movie_id",
+                    "available_seats",
+                    "screening_time"
+                ],
+                "properties": {
+                    "movie_id": {
+                        "type": "integer"
+                    },
+                    "available_seats": {
+                        "type": "integer"
+                    },
+                    "screening_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateMovieRequest": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "age_rating": {
+                        "type": "string",
+                        "enum": [
+                            "G",
+                            "PG",
+                            "PG-13",
+                            "R",
+                            "NC-17"
+                        ]
+                    },
+                    "language": {
+                        "type": "string",
+                        "enum": [
+                            "English",
+                            "Spanish",
+                            "French",
+                            "German",
+                            "Chinese",
+                            "Japanese",
+                            "Hindi",
+                            "Russian",
+                            "Arabic",
+                            "Italian"
+                        ]
+                    },
+                    "cover_img_url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateScreeningRequest": {
+                "properties": {
+                    "movie_id": {
+                        "type": "integer"
+                    },
+                    "available_seats": {
+                        "type": "integer"
+                    },
+                    "screening_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Movie": {
+                "required": [
+                    "title",
+                    "description",
+                    "age_rating",
+                    "language",
+                    "cover_img_url"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Movie ID",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "Title of the movie",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the movie",
+                        "type": "string"
+                    },
+                    "age_rating": {
+                        "description": "Movie age rating",
+                        "type": "string"
+                    },
+                    "language": {
+                        "description": "Language of the movie",
+                        "type": "string"
+                    },
+                    "cover_img_url": {
+                        "description": "URL of the movie cover image",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Screening": {
+                "required": [
+                    "movie_id",
+                    "available_seats",
+                    "screening_time"
+                ],
+                "properties": {
+                    "movie_id": {
+                        "type": "integer"
+                    },
+                    "available_seats": {
+                        "type": "integer"
+                    },
+                    "screening_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Movies",
+            "description": "Operations related to movies"
+        },
+        {
+            "name": "Screenings",
+            "description": "Operations related to screenings"
+        }
+    ]
+}
