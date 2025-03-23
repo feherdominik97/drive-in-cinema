@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Movie;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Annotations as OA;
 
@@ -59,7 +60,7 @@ class MoviesController extends Controller
     {
         $movie = Movie::query()->create($request->validated());
 
-        return response()->json($movie, 201);
+        return response()->json($movie, Response::HTTP_CREATED);
     }
 
     /**
@@ -148,7 +149,7 @@ class MoviesController extends Controller
     {
         $movie->delete();
 
-        return response()->json(null, 204);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 
     /**

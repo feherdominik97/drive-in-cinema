@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateScreeningRequest;
 use App\Models\Screening;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Annotations as OA;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @OA\Tag(name="Screenings", description="Operations related to screenings")
@@ -59,7 +60,7 @@ class ScreeningsController extends Controller
     {
         $screening = Screening::query()->create($request->validated());
 
-        return response()->json($screening, 201);
+        return response()->json($screening, Response::HTTP_CREATED);
     }
 
     /**
@@ -148,7 +149,7 @@ class ScreeningsController extends Controller
     {
         $screening->delete();
 
-        return response()->json(null, 204);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 
     /**
