@@ -9,10 +9,11 @@ Drive-in Cinema REST API
    cd drive-in-cinema
    ````
    ```sh
-   docker-compose up -d --build
-   docker-compose exec app php artisan migrate --seed
+   cp .env-example .env
    composer install
    npm i
+   docker-compose up -d --build
+   docker-compose exec app php artisan migrate:fresh --seed
    ```
 
 Documentation: http://localhost:8000/api/documentation
