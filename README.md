@@ -11,6 +11,8 @@ Drive-in Cinema REST API
    ```sh
    docker-compose up -d --build
    docker-compose exec app php artisan migrate --seed
+   composer install
+   npm i
    ```
 
 Documentation: http://localhost:8000/api/documentation
